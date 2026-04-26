@@ -1,0 +1,102 @@
+{
+  "info": {
+    "_postman_id": "614126d7-a502-4d9e-b3be-8bf0f5ca8a05",
+    "name": "DataDrivenAPIs",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "28028465",
+    "_collection_link": "https://go.postman.co/collection/28028465-614126d7-a502-4d9e-b3be-8bf0f5ca8a05?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "CreateUserWithTestData",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 201\", function () {\r",
+              "    pm.response.to.have.status(201);\r",
+              "});\r",
+              "\r",
+              "// pm.test(\"Your test name\", function () {\r",
+              "//     var jsonData = pm.response.json();\r",
+              "//     pm.expect(jsonData.name).to.eql(pm.iterationData.get(\"name\"));\r",
+              "//     pm.expect(jsonData.gender).to.eql(pm.iterationData.get(\"gender\"));\r",
+              "//     pm.expect(jsonData.status).to.eql(pm.iterationData.get(\"status\"));\r",
+              "\r",
+              "\r",
+              "//     const rawJsonBody = pm.request.body.raw;\r",
+              "\r",
+              "//     const requestBody = JSON.parse(rawJsonBody);\r",
+              "\r",
+              "//     const email = requestBody.email;\r",
+              "//     console.log(\"Email==>\" + email);\r",
+              "// \tpm.expect(jsonData.email).to.eql(email);\r",
+              "\r",
+              "// });\r",
+              "\r",
+              "\r",
+              "pm.test(\"Validate user response\", function () {\r",
+              "\r",
+              "    const jsonData = pm.response.json();\r",
+              "\r",
+              "    pm.expect(jsonData.name).to.eql(pm.iterationData.get(\"name\"));\r",
+              "    pm.expect(jsonData.gender).to.eql(pm.iterationData.get(\"gender\"));\r",
+              "    pm.expect(jsonData.status).to.eql(pm.iterationData.get(\"status\"));\r",
+              "\r",
+              "    // const rawJsonBody = pm.request.body.raw;\r",
+              "    // const requestBody = JSON.parse(rawJsonBody);\r",
+              "\r",
+              "    // const email = requestBody.email;\r",
+              "\r",
+              "    // console.log(\"Email ==> \" + email);\r",
+              "\r",
+              "    // pm.expect(jsonData.email).to.eql(email);\r",
+              "\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "{{tokenID}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "//name, gender, status fetching coming from csv file: myUser.csv\r\n\r\n{\r\n    \"name\": \"{{name}}\",\r\n    \"email\": \"{{$randomEmail}}\",\r\n    \"gender\": \"{{gender}}\",\r\n    \"status\": \"{{status}}\"\r\n}\r\n\r\n\r\n//csv json ",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://gorest.in/public/v2/users",
+          "protocol": "https",
+          "host": [
+            "gorest",
+            "in"
+          ],
+          "path": [
+            "public",
+            "v2",
+            "users"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

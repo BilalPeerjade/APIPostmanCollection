@@ -1,0 +1,312 @@
+{
+  "info": {
+    "_postman_id": "b9e2b02c-fbfb-4795-8067-e9e132b10f49",
+    "name": "GoRestAPIWorkFlow",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "28028465",
+    "_collection_link": "https://go.postman.co/collection/28028465-b9e2b02c-fbfb-4795-8067-e9e132b10f49?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "1- GetAllUsers",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "//Check script status code is 200\r",
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "{{tokenID}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{baseURL}}/public/v2/users",
+          "host": [
+            "{{baseURL}}"
+          ],
+          "path": [
+            "public",
+            "v2",
+            "users"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "2- CreateUser",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "const response = pm.response.json();\r",
+              "const user_ID = response.id;\r",
+              "console.log(\"ID===>\" + user_ID);\r",
+              "\r",
+              "pm.variables.set(\"USERId\", user_ID);\r",
+              "\r",
+              "//Test Case:\r",
+              "pm.test(\"Status code is 201\", function () {\r",
+              "    pm.response.to.have.status(201);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Check user name : Bilal\", function () {\r",
+              "    var jsonData = pm.response.json();\r",
+              "    pm.expect(jsonData.name).to.eql(\"Bilal\");\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Verify Content-Type\", function () {\r",
+              "    pm.response.to.have.header(\"Content-Type\");\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "{{tokenID}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"name\": \"Bilal\",\r\n    \"email\": \"api{{$randomFirstName}}@test.com\",\r\n    \"gender\": \"male\",\r\n    \"status\": \"active\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseURL}}/public/v2/users",
+          "host": [
+            "{{baseURL}}"
+          ],
+          "path": [
+            "public",
+            "v2",
+            "users"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "3- GetUserID",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "//Test Case\r",
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "\r",
+              "//Test Case 2:\r",
+              "pm.test(\"check userID is correct\" , function() {\r",
+              "    const newUserId = pm.variables.get(\"USERId\");\r",
+              "\r",
+              "    console.log(\"userid is : \" + newUserId);\r",
+              "\r",
+              "    const jsonData = pm.response.json();\r",
+              "    pm.expect(jsonData.id).to.eql(newUserId);\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "{{tokenID}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{baseURL}}/public/v2/users/{{USERId}}",
+          "host": [
+            "{{baseURL}}"
+          ],
+          "path": [
+            "public",
+            "v2",
+            "users",
+            "{{USERId}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "4- UpdateUserByID",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Response time is less than 5000ms\", function () {\r",
+              "    pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Check user status : inactive\", function () {\r",
+              "    var jsonData = pm.response.json();\r",
+              "    pm.expect(jsonData.status).to.eql(\"inactive\");\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "{{tokenID}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"name\": \"Naveen Kumar\",\r\n    \"email\": \"naveen@example.com\",\r\n    \"gender\": \"male\",\r\n    \"status\": \"inactive\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseURL}}/public/v2/users/{{USERId}}",
+          "host": [
+            "{{baseURL}}"
+          ],
+          "path": [
+            "public",
+            "v2",
+            "users",
+            "{{USERId}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "5- DeleteUser",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 204\", function () {\r",
+              "    pm.response.to.have.status(204);\r",
+              "});\r",
+              "\r",
+              "\r",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "{{tokenID}}"
+          }
+        ],
+        "url": {
+          "raw": "{{baseURL}}/public/v2/users/{{USERId}}",
+          "host": [
+            "{{baseURL}}"
+          ],
+          "path": [
+            "public",
+            "v2",
+            "users",
+            "{{USERId}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "6- GetDeletedUser",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 404\", function () {\r",
+              "    pm.response.to.have.status(404);\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseURL}}/public/v2/users/{{USERId}}",
+          "host": [
+            "{{baseURL}}"
+          ],
+          "path": [
+            "public",
+            "v2",
+            "users",
+            "{{USERId}}"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

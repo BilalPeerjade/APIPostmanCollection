@@ -1,0 +1,1285 @@
+{
+  "collection": {
+    "_": {
+      "postman_id": "614126d7-a502-4d9e-b3be-8bf0f5ca8a05",
+      "exporter_id": "28028465",
+      "collection_link": "https://go.postman.co/collection/28028465-614126d7-a502-4d9e-b3be-8bf0f5ca8a05?source=collection_link"
+    },
+    "item": [
+      {
+        "id": "97914d7d-6f29-4ae9-953e-c2e0ee7a3e4a",
+        "name": "CreateUserWithTestData",
+        "request": {
+          "url": {
+            "protocol": "https",
+            "path": [
+              "public",
+              "v2",
+              "users"
+            ],
+            "host": [
+              "gorest",
+              "in"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Authorization",
+              "value": "{{tokenID}}"
+            }
+          ],
+          "method": "POST",
+          "body": {
+            "mode": "raw",
+            "raw": "//name, gender, status fetching coming from csv file: myUser.csv\r\n\r\n{\r\n    \"name\": \"{{name}}\",\r\n    \"email\": \"{{$randomEmail}}\",\r\n    \"gender\": \"{{gender}}\",\r\n    \"status\": \"{{status}}\"\r\n}\r\n\r\n\r\n//csv json ",
+            "options": {
+              "raw": {
+                "language": "json"
+              }
+            }
+          }
+        },
+        "response": [],
+        "event": [
+          {
+            "listen": "test",
+            "script": {
+              "id": "4f26de5b-9217-4eb3-87e0-8d900358e48e",
+              "type": "text/javascript",
+              "packages": {},
+              "exec": [
+                "pm.test(\"Status code is 201\", function () {\r",
+                "    pm.response.to.have.status(201);\r",
+                "});\r",
+                "\r",
+                "// pm.test(\"Your test name\", function () {\r",
+                "//     var jsonData = pm.response.json();\r",
+                "//     pm.expect(jsonData.name).to.eql(pm.iterationData.get(\"name\"));\r",
+                "//     pm.expect(jsonData.gender).to.eql(pm.iterationData.get(\"gender\"));\r",
+                "//     pm.expect(jsonData.status).to.eql(pm.iterationData.get(\"status\"));\r",
+                "\r",
+                "\r",
+                "//     const rawJsonBody = pm.request.body.raw;\r",
+                "\r",
+                "//     const requestBody = JSON.parse(rawJsonBody);\r",
+                "\r",
+                "//     const email = requestBody.email;\r",
+                "//     console.log(\"Email==>\" + email);\r",
+                "// \tpm.expect(jsonData.email).to.eql(email);\r",
+                "\r",
+                "// });\r",
+                "\r",
+                "\r",
+                "pm.test(\"Validate user response\", function () {\r",
+                "\r",
+                "    const jsonData = pm.response.json();\r",
+                "\r",
+                "    pm.expect(jsonData.name).to.eql(pm.iterationData.get(\"name\"));\r",
+                "    pm.expect(jsonData.gender).to.eql(pm.iterationData.get(\"gender\"));\r",
+                "    pm.expect(jsonData.status).to.eql(pm.iterationData.get(\"status\"));\r",
+                "\r",
+                "    // const rawJsonBody = pm.request.body.raw;\r",
+                "    // const requestBody = JSON.parse(rawJsonBody);\r",
+                "\r",
+                "    // const email = requestBody.email;\r",
+                "\r",
+                "    // console.log(\"Email ==> \" + email);\r",
+                "\r",
+                "    // pm.expect(jsonData.email).to.eql(email);\r",
+                "\r",
+                "});"
+              ],
+              "_lastExecutionId": "6fb9dd8a-f8fe-445f-9cf2-f510f499b777"
+            }
+          }
+        ]
+      }
+    ],
+    "event": [],
+    "variable": [],
+    "info": {
+      "_postman_id": "614126d7-a502-4d9e-b3be-8bf0f5ca8a05",
+      "name": "DataDrivenAPIs",
+      "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    }
+  },
+  "environment": {
+    "_": {
+      "postman_variable_scope": "environment",
+      "postman_exported_at": "2026-04-08T03:41:57.554Z",
+      "postman_exported_using": "Postman/12.4.4"
+    },
+    "id": "6ea096de-f9c8-4f00-9f4f-8007164713a2",
+    "name": "GoRestEnv",
+    "values": [
+      {
+        "type": "any",
+        "value": "https://gorest.in",
+        "key": "baseURL"
+      },
+      {
+        "type": "any",
+        "value": "Bearer demo-token",
+        "key": "tokenID"
+      }
+    ]
+  },
+  "globals": {
+    "id": "58a672bb-0569-4707-b942-0319a1f07cd4",
+    "values": []
+  },
+  "run": {
+    "stats": {
+      "iterations": {
+        "total": 3,
+        "pending": 0,
+        "failed": 0
+      },
+      "items": {
+        "total": 3,
+        "pending": 0,
+        "failed": 0
+      },
+      "scripts": {
+        "total": 3,
+        "pending": 0,
+        "failed": 0
+      },
+      "prerequests": {
+        "total": 3,
+        "pending": 0,
+        "failed": 0
+      },
+      "requests": {
+        "total": 3,
+        "pending": 0,
+        "failed": 0
+      },
+      "tests": {
+        "total": 3,
+        "pending": 0,
+        "failed": 0
+      },
+      "assertions": {
+        "total": 6,
+        "pending": 0,
+        "failed": 0
+      },
+      "testScripts": {
+        "total": 3,
+        "pending": 0,
+        "failed": 0
+      },
+      "prerequestScripts": {
+        "total": 0,
+        "pending": 0,
+        "failed": 0
+      }
+    },
+    "timings": {
+      "responseAverage": 541,
+      "responseMin": 267,
+      "responseMax": 1079,
+      "responseSd": 380.4453530622587,
+      "dnsAverage": 0,
+      "dnsMin": 0,
+      "dnsMax": 0,
+      "dnsSd": 0,
+      "firstByteAverage": 0,
+      "firstByteMin": 0,
+      "firstByteMax": 0,
+      "firstByteSd": 0,
+      "started": 1776427826582,
+      "completed": 1776427828321
+    },
+    "executions": [
+      {
+        "cursor": {
+          "position": 0,
+          "iteration": 0,
+          "length": 1,
+          "cycles": 3,
+          "empty": false,
+          "eof": false,
+          "bof": true,
+          "cr": false,
+          "ref": "ddccdaef-5920-4a7a-bd2a-4daae752f2da",
+          "httpRequestId": "04d0a64e-b133-417d-ad1e-8489186c0508"
+        },
+        "item": {
+          "id": "97914d7d-6f29-4ae9-953e-c2e0ee7a3e4a",
+          "name": "CreateUserWithTestData",
+          "request": {
+            "url": {
+              "protocol": "https",
+              "path": [
+                "public",
+                "v2",
+                "users"
+              ],
+              "host": [
+                "gorest",
+                "in"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{tokenID}}"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "//name, gender, status fetching coming from csv file: myUser.csv\r\n\r\n{\r\n    \"name\": \"{{name}}\",\r\n    \"email\": \"{{$randomEmail}}\",\r\n    \"gender\": \"{{gender}}\",\r\n    \"status\": \"{{status}}\"\r\n}\r\n\r\n\r\n//csv json ",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "4f26de5b-9217-4eb3-87e0-8d900358e48e",
+                "type": "text/javascript",
+                "packages": {},
+                "exec": [
+                  "pm.test(\"Status code is 201\", function () {\r",
+                  "    pm.response.to.have.status(201);\r",
+                  "});\r",
+                  "\r",
+                  "// pm.test(\"Your test name\", function () {\r",
+                  "//     var jsonData = pm.response.json();\r",
+                  "//     pm.expect(jsonData.name).to.eql(pm.iterationData.get(\"name\"));\r",
+                  "//     pm.expect(jsonData.gender).to.eql(pm.iterationData.get(\"gender\"));\r",
+                  "//     pm.expect(jsonData.status).to.eql(pm.iterationData.get(\"status\"));\r",
+                  "\r",
+                  "\r",
+                  "//     const rawJsonBody = pm.request.body.raw;\r",
+                  "\r",
+                  "//     const requestBody = JSON.parse(rawJsonBody);\r",
+                  "\r",
+                  "//     const email = requestBody.email;\r",
+                  "//     console.log(\"Email==>\" + email);\r",
+                  "// \tpm.expect(jsonData.email).to.eql(email);\r",
+                  "\r",
+                  "// });\r",
+                  "\r",
+                  "\r",
+                  "pm.test(\"Validate user response\", function () {\r",
+                  "\r",
+                  "    const jsonData = pm.response.json();\r",
+                  "\r",
+                  "    pm.expect(jsonData.name).to.eql(pm.iterationData.get(\"name\"));\r",
+                  "    pm.expect(jsonData.gender).to.eql(pm.iterationData.get(\"gender\"));\r",
+                  "    pm.expect(jsonData.status).to.eql(pm.iterationData.get(\"status\"));\r",
+                  "\r",
+                  "    // const rawJsonBody = pm.request.body.raw;\r",
+                  "    // const requestBody = JSON.parse(rawJsonBody);\r",
+                  "\r",
+                  "    // const email = requestBody.email;\r",
+                  "\r",
+                  "    // console.log(\"Email ==> \" + email);\r",
+                  "\r",
+                  "    // pm.expect(jsonData.email).to.eql(email);\r",
+                  "\r",
+                  "});"
+                ],
+                "_lastExecutionId": "6fb9dd8a-f8fe-445f-9cf2-f510f499b777"
+              }
+            }
+          ]
+        },
+        "request": {
+          "url": {
+            "protocol": "https",
+            "path": [
+              "public",
+              "v2",
+              "users"
+            ],
+            "host": [
+              "gorest",
+              "in"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Authorization",
+              "value": "Bearer demo-token"
+            },
+            {
+              "key": "User-Agent",
+              "value": "PostmanRuntime/7.39.1",
+              "system": true
+            },
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "system": true
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache",
+              "system": true
+            },
+            {
+              "key": "Postman-Token",
+              "value": "7a740cca-4940-40d0-a806-8ce1b560d991",
+              "system": true
+            },
+            {
+              "key": "Host",
+              "value": "gorest.in",
+              "system": true
+            },
+            {
+              "key": "Accept-Encoding",
+              "value": "gzip, deflate, br",
+              "system": true
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive",
+              "system": true
+            },
+            {
+              "key": "Content-Length",
+              "value": "128",
+              "system": true
+            }
+          ],
+          "method": "POST",
+          "body": {
+            "mode": "raw",
+            "raw": "\n\r\n{\r\n    \"name\": \"Bilal\",\r\n    \"email\": \"Estrella_Sauer19@hotmail.com\",\r\n    \"gender\": \"male\",\r\n    \"status\": \"active\"\r\n}\r\n\r\n\r\n",
+            "options": {
+              "raw": {
+                "language": "json"
+              }
+            }
+          }
+        },
+        "response": {
+          "id": "0cba4925-ee63-42a6-b48b-1d9a2a81dcdc",
+          "status": "Created",
+          "code": 201,
+          "header": [
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Cache-Control",
+              "value": "public, max-age=0, must-revalidate"
+            },
+            {
+              "key": "Content-Length",
+              "value": "99"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Date",
+              "value": "Fri, 17 Apr 2026 12:10:27 GMT"
+            },
+            {
+              "key": "Etag",
+              "value": "W/\"63-plmB0JgwlY/dfUxJj8N2zMVEVlI\""
+            },
+            {
+              "key": "Server",
+              "value": "Vercel"
+            },
+            {
+              "key": "Strict-Transport-Security",
+              "value": "max-age=63072000"
+            },
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "X-Ratelimit-Limit",
+              "value": "60"
+            },
+            {
+              "key": "X-Ratelimit-Remaining",
+              "value": "59"
+            },
+            {
+              "key": "X-Ratelimit-Reset",
+              "value": "60"
+            },
+            {
+              "key": "X-Vercel-Cache",
+              "value": "MISS"
+            },
+            {
+              "key": "X-Vercel-Id",
+              "value": "bom1::iad1::sspg8-1776427826796-77c84e496f04"
+            }
+          ],
+          "stream": {
+            "type": "Buffer",
+            "data": [
+              123,
+              34,
+              105,
+              100,
+              34,
+              58,
+              49,
+              48,
+              50,
+              49,
+              44,
+              34,
+              110,
+              97,
+              109,
+              101,
+              34,
+              58,
+              34,
+              66,
+              105,
+              108,
+              97,
+              108,
+              34,
+              44,
+              34,
+              101,
+              109,
+              97,
+              105,
+              108,
+              34,
+              58,
+              34,
+              101,
+              115,
+              116,
+              114,
+              101,
+              108,
+              108,
+              97,
+              95,
+              115,
+              97,
+              117,
+              101,
+              114,
+              49,
+              57,
+              64,
+              104,
+              111,
+              116,
+              109,
+              97,
+              105,
+              108,
+              46,
+              99,
+              111,
+              109,
+              34,
+              44,
+              34,
+              103,
+              101,
+              110,
+              100,
+              101,
+              114,
+              34,
+              58,
+              34,
+              109,
+              97,
+              108,
+              101,
+              34,
+              44,
+              34,
+              115,
+              116,
+              97,
+              116,
+              117,
+              115,
+              34,
+              58,
+              34,
+              97,
+              99,
+              116,
+              105,
+              118,
+              101,
+              34,
+              125
+            ]
+          },
+          "cookie": [],
+          "responseTime": 1079,
+          "responseSize": 99
+        },
+        "id": "97914d7d-6f29-4ae9-953e-c2e0ee7a3e4a",
+        "assertions": [
+          {
+            "assertion": "Status code is 201",
+            "skipped": false
+          },
+          {
+            "assertion": "Validate user response",
+            "skipped": false
+          }
+        ]
+      },
+      {
+        "cursor": {
+          "ref": "35ef5026-3d6a-4767-80b1-be569bfff3f1",
+          "length": 1,
+          "cycles": 3,
+          "position": 0,
+          "iteration": 1,
+          "cr": true,
+          "httpRequestId": "f97197c1-7985-4512-97e2-b794130e0bb7"
+        },
+        "item": {
+          "id": "97914d7d-6f29-4ae9-953e-c2e0ee7a3e4a",
+          "name": "CreateUserWithTestData",
+          "request": {
+            "url": {
+              "protocol": "https",
+              "path": [
+                "public",
+                "v2",
+                "users"
+              ],
+              "host": [
+                "gorest",
+                "in"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{tokenID}}"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "//name, gender, status fetching coming from csv file: myUser.csv\r\n\r\n{\r\n    \"name\": \"{{name}}\",\r\n    \"email\": \"{{$randomEmail}}\",\r\n    \"gender\": \"{{gender}}\",\r\n    \"status\": \"{{status}}\"\r\n}\r\n\r\n\r\n//csv json ",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "4f26de5b-9217-4eb3-87e0-8d900358e48e",
+                "type": "text/javascript",
+                "packages": {},
+                "exec": [
+                  "pm.test(\"Status code is 201\", function () {\r",
+                  "    pm.response.to.have.status(201);\r",
+                  "});\r",
+                  "\r",
+                  "// pm.test(\"Your test name\", function () {\r",
+                  "//     var jsonData = pm.response.json();\r",
+                  "//     pm.expect(jsonData.name).to.eql(pm.iterationData.get(\"name\"));\r",
+                  "//     pm.expect(jsonData.gender).to.eql(pm.iterationData.get(\"gender\"));\r",
+                  "//     pm.expect(jsonData.status).to.eql(pm.iterationData.get(\"status\"));\r",
+                  "\r",
+                  "\r",
+                  "//     const rawJsonBody = pm.request.body.raw;\r",
+                  "\r",
+                  "//     const requestBody = JSON.parse(rawJsonBody);\r",
+                  "\r",
+                  "//     const email = requestBody.email;\r",
+                  "//     console.log(\"Email==>\" + email);\r",
+                  "// \tpm.expect(jsonData.email).to.eql(email);\r",
+                  "\r",
+                  "// });\r",
+                  "\r",
+                  "\r",
+                  "pm.test(\"Validate user response\", function () {\r",
+                  "\r",
+                  "    const jsonData = pm.response.json();\r",
+                  "\r",
+                  "    pm.expect(jsonData.name).to.eql(pm.iterationData.get(\"name\"));\r",
+                  "    pm.expect(jsonData.gender).to.eql(pm.iterationData.get(\"gender\"));\r",
+                  "    pm.expect(jsonData.status).to.eql(pm.iterationData.get(\"status\"));\r",
+                  "\r",
+                  "    // const rawJsonBody = pm.request.body.raw;\r",
+                  "    // const requestBody = JSON.parse(rawJsonBody);\r",
+                  "\r",
+                  "    // const email = requestBody.email;\r",
+                  "\r",
+                  "    // console.log(\"Email ==> \" + email);\r",
+                  "\r",
+                  "    // pm.expect(jsonData.email).to.eql(email);\r",
+                  "\r",
+                  "});"
+                ],
+                "_lastExecutionId": "6fb9dd8a-f8fe-445f-9cf2-f510f499b777"
+              }
+            }
+          ]
+        },
+        "request": {
+          "url": {
+            "protocol": "https",
+            "path": [
+              "public",
+              "v2",
+              "users"
+            ],
+            "host": [
+              "gorest",
+              "in"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Authorization",
+              "value": "Bearer demo-token"
+            },
+            {
+              "key": "User-Agent",
+              "value": "PostmanRuntime/7.39.1",
+              "system": true
+            },
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "system": true
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache",
+              "system": true
+            },
+            {
+              "key": "Postman-Token",
+              "value": "dcf63974-964d-4127-95df-0ba48b7a63c8",
+              "system": true
+            },
+            {
+              "key": "Host",
+              "value": "gorest.in",
+              "system": true
+            },
+            {
+              "key": "Accept-Encoding",
+              "value": "gzip, deflate, br",
+              "system": true
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive",
+              "system": true
+            },
+            {
+              "key": "Content-Length",
+              "value": "120",
+              "system": true
+            }
+          ],
+          "method": "POST",
+          "body": {
+            "mode": "raw",
+            "raw": "\n\r\n{\r\n    \"name\": \"Danish\",\r\n    \"email\": \"Bernita43@yahoo.com\",\r\n    \"gender\": \"male\",\r\n    \"status\": \"active\"\r\n}\r\n\r\n\r\n",
+            "options": {
+              "raw": {
+                "language": "json"
+              }
+            }
+          }
+        },
+        "response": {
+          "id": "3fa057e0-b16f-4734-a50d-b732f44ab41e",
+          "status": "Created",
+          "code": 201,
+          "header": [
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Cache-Control",
+              "value": "public, max-age=0, must-revalidate"
+            },
+            {
+              "key": "Content-Length",
+              "value": "91"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Date",
+              "value": "Fri, 17 Apr 2026 12:10:27 GMT"
+            },
+            {
+              "key": "Etag",
+              "value": "W/\"5b-t9H7HRLN/IIDBD+LGLd1O0wYmMU\""
+            },
+            {
+              "key": "Server",
+              "value": "Vercel"
+            },
+            {
+              "key": "Strict-Transport-Security",
+              "value": "max-age=63072000"
+            },
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "X-Ratelimit-Limit",
+              "value": "60"
+            },
+            {
+              "key": "X-Ratelimit-Remaining",
+              "value": "58"
+            },
+            {
+              "key": "X-Ratelimit-Reset",
+              "value": "60"
+            },
+            {
+              "key": "X-Vercel-Cache",
+              "value": "MISS"
+            },
+            {
+              "key": "X-Vercel-Id",
+              "value": "bom1::iad1::x9vw8-1776427827763-75b94f676647"
+            }
+          ],
+          "stream": {
+            "type": "Buffer",
+            "data": [
+              123,
+              34,
+              105,
+              100,
+              34,
+              58,
+              49,
+              48,
+              50,
+              50,
+              44,
+              34,
+              110,
+              97,
+              109,
+              101,
+              34,
+              58,
+              34,
+              68,
+              97,
+              110,
+              105,
+              115,
+              104,
+              34,
+              44,
+              34,
+              101,
+              109,
+              97,
+              105,
+              108,
+              34,
+              58,
+              34,
+              98,
+              101,
+              114,
+              110,
+              105,
+              116,
+              97,
+              52,
+              51,
+              64,
+              121,
+              97,
+              104,
+              111,
+              111,
+              46,
+              99,
+              111,
+              109,
+              34,
+              44,
+              34,
+              103,
+              101,
+              110,
+              100,
+              101,
+              114,
+              34,
+              58,
+              34,
+              109,
+              97,
+              108,
+              101,
+              34,
+              44,
+              34,
+              115,
+              116,
+              97,
+              116,
+              117,
+              115,
+              34,
+              58,
+              34,
+              97,
+              99,
+              116,
+              105,
+              118,
+              101,
+              34,
+              125
+            ]
+          },
+          "cookie": [],
+          "responseTime": 277,
+          "responseSize": 91
+        },
+        "id": "97914d7d-6f29-4ae9-953e-c2e0ee7a3e4a",
+        "assertions": [
+          {
+            "assertion": "Status code is 201",
+            "skipped": false
+          },
+          {
+            "assertion": "Validate user response",
+            "skipped": false
+          }
+        ]
+      },
+      {
+        "cursor": {
+          "ref": "66425cc5-e524-45ac-9997-1cdcfa6f7c07",
+          "length": 1,
+          "cycles": 3,
+          "position": 0,
+          "iteration": 2,
+          "cr": true,
+          "httpRequestId": "46bd5069-79ff-4f6e-876e-f4b468266a02"
+        },
+        "item": {
+          "id": "97914d7d-6f29-4ae9-953e-c2e0ee7a3e4a",
+          "name": "CreateUserWithTestData",
+          "request": {
+            "url": {
+              "protocol": "https",
+              "path": [
+                "public",
+                "v2",
+                "users"
+              ],
+              "host": [
+                "gorest",
+                "in"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{tokenID}}"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "//name, gender, status fetching coming from csv file: myUser.csv\r\n\r\n{\r\n    \"name\": \"{{name}}\",\r\n    \"email\": \"{{$randomEmail}}\",\r\n    \"gender\": \"{{gender}}\",\r\n    \"status\": \"{{status}}\"\r\n}\r\n\r\n\r\n//csv json ",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "4f26de5b-9217-4eb3-87e0-8d900358e48e",
+                "type": "text/javascript",
+                "packages": {},
+                "exec": [
+                  "pm.test(\"Status code is 201\", function () {\r",
+                  "    pm.response.to.have.status(201);\r",
+                  "});\r",
+                  "\r",
+                  "// pm.test(\"Your test name\", function () {\r",
+                  "//     var jsonData = pm.response.json();\r",
+                  "//     pm.expect(jsonData.name).to.eql(pm.iterationData.get(\"name\"));\r",
+                  "//     pm.expect(jsonData.gender).to.eql(pm.iterationData.get(\"gender\"));\r",
+                  "//     pm.expect(jsonData.status).to.eql(pm.iterationData.get(\"status\"));\r",
+                  "\r",
+                  "\r",
+                  "//     const rawJsonBody = pm.request.body.raw;\r",
+                  "\r",
+                  "//     const requestBody = JSON.parse(rawJsonBody);\r",
+                  "\r",
+                  "//     const email = requestBody.email;\r",
+                  "//     console.log(\"Email==>\" + email);\r",
+                  "// \tpm.expect(jsonData.email).to.eql(email);\r",
+                  "\r",
+                  "// });\r",
+                  "\r",
+                  "\r",
+                  "pm.test(\"Validate user response\", function () {\r",
+                  "\r",
+                  "    const jsonData = pm.response.json();\r",
+                  "\r",
+                  "    pm.expect(jsonData.name).to.eql(pm.iterationData.get(\"name\"));\r",
+                  "    pm.expect(jsonData.gender).to.eql(pm.iterationData.get(\"gender\"));\r",
+                  "    pm.expect(jsonData.status).to.eql(pm.iterationData.get(\"status\"));\r",
+                  "\r",
+                  "    // const rawJsonBody = pm.request.body.raw;\r",
+                  "    // const requestBody = JSON.parse(rawJsonBody);\r",
+                  "\r",
+                  "    // const email = requestBody.email;\r",
+                  "\r",
+                  "    // console.log(\"Email ==> \" + email);\r",
+                  "\r",
+                  "    // pm.expect(jsonData.email).to.eql(email);\r",
+                  "\r",
+                  "});"
+                ],
+                "_lastExecutionId": "6fb9dd8a-f8fe-445f-9cf2-f510f499b777"
+              }
+            }
+          ]
+        },
+        "request": {
+          "url": {
+            "protocol": "https",
+            "path": [
+              "public",
+              "v2",
+              "users"
+            ],
+            "host": [
+              "gorest",
+              "in"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Authorization",
+              "value": "Bearer demo-token"
+            },
+            {
+              "key": "User-Agent",
+              "value": "PostmanRuntime/7.39.1",
+              "system": true
+            },
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "system": true
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache",
+              "system": true
+            },
+            {
+              "key": "Postman-Token",
+              "value": "40ec29d9-efb3-4306-8b40-27940c1fd524",
+              "system": true
+            },
+            {
+              "key": "Host",
+              "value": "gorest.in",
+              "system": true
+            },
+            {
+              "key": "Accept-Encoding",
+              "value": "gzip, deflate, br",
+              "system": true
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive",
+              "system": true
+            },
+            {
+              "key": "Content-Length",
+              "value": "123",
+              "system": true
+            }
+          ],
+          "method": "POST",
+          "body": {
+            "mode": "raw",
+            "raw": "\n\r\n{\r\n    \"name\": \"Faiz\",\r\n    \"email\": \"Kenyon_Jones30@gmail.com\",\r\n    \"gender\": \"male\",\r\n    \"status\": \"active\"\r\n}\r\n\r\n\r\n",
+            "options": {
+              "raw": {
+                "language": "json"
+              }
+            }
+          }
+        },
+        "response": {
+          "id": "31cf4ebf-e879-4246-b6e1-6b3b7b0505d1",
+          "status": "Created",
+          "code": 201,
+          "header": [
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Cache-Control",
+              "value": "public, max-age=0, must-revalidate"
+            },
+            {
+              "key": "Content-Length",
+              "value": "94"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Date",
+              "value": "Fri, 17 Apr 2026 12:10:28 GMT"
+            },
+            {
+              "key": "Etag",
+              "value": "W/\"5e-ziTvPQovykCWGLFm1xtv4haLoUw\""
+            },
+            {
+              "key": "Server",
+              "value": "Vercel"
+            },
+            {
+              "key": "Strict-Transport-Security",
+              "value": "max-age=63072000"
+            },
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "X-Ratelimit-Limit",
+              "value": "60"
+            },
+            {
+              "key": "X-Ratelimit-Remaining",
+              "value": "57"
+            },
+            {
+              "key": "X-Ratelimit-Reset",
+              "value": "60"
+            },
+            {
+              "key": "X-Vercel-Cache",
+              "value": "MISS"
+            },
+            {
+              "key": "X-Vercel-Id",
+              "value": "bom1::iad1::9pvfb-1776427828069-f4eed3c21f5e"
+            }
+          ],
+          "stream": {
+            "type": "Buffer",
+            "data": [
+              123,
+              34,
+              105,
+              100,
+              34,
+              58,
+              49,
+              48,
+              50,
+              51,
+              44,
+              34,
+              110,
+              97,
+              109,
+              101,
+              34,
+              58,
+              34,
+              70,
+              97,
+              105,
+              122,
+              34,
+              44,
+              34,
+              101,
+              109,
+              97,
+              105,
+              108,
+              34,
+              58,
+              34,
+              107,
+              101,
+              110,
+              121,
+              111,
+              110,
+              95,
+              106,
+              111,
+              110,
+              101,
+              115,
+              51,
+              48,
+              64,
+              103,
+              109,
+              97,
+              105,
+              108,
+              46,
+              99,
+              111,
+              109,
+              34,
+              44,
+              34,
+              103,
+              101,
+              110,
+              100,
+              101,
+              114,
+              34,
+              58,
+              34,
+              109,
+              97,
+              108,
+              101,
+              34,
+              44,
+              34,
+              115,
+              116,
+              97,
+              116,
+              117,
+              115,
+              34,
+              58,
+              34,
+              97,
+              99,
+              116,
+              105,
+              118,
+              101,
+              34,
+              125
+            ]
+          },
+          "cookie": [],
+          "responseTime": 267,
+          "responseSize": 94
+        },
+        "id": "97914d7d-6f29-4ae9-953e-c2e0ee7a3e4a",
+        "assertions": [
+          {
+            "assertion": "Status code is 201",
+            "skipped": false
+          },
+          {
+            "assertion": "Validate user response",
+            "skipped": false
+          }
+        ]
+      }
+    ],
+    "transfers": {
+      "responseTotal": 284
+    },
+    "failures": [],
+    "error": null
+  }
+}
