@@ -19,12 +19,12 @@ pipeline {
         }
         stage('pull Docker Image') {
             steps {
-                sh 'docker pull peerjadebilal/gorestapitest:1.1'
+                bat 'docker pull peerjadebilal/gorestapitest:1.1'
             }
         }
 	stage('Run API Test Cases') {
             steps {
-                sh 'docker run -v %cd%/newman:/app/newman peerjadebilal/gorestapitest:1.1'
+                bat 'docker run -v %cd%/newman:/app/newman peerjadebilal/gorestapitest:1.1'
             }
         }
 	stage('Publish HTML Extra Report') {
