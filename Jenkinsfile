@@ -12,14 +12,19 @@ pipeline {
                 echo 'Deploying to QA..'
             }
         }
+       stage('Checkout') {
+            steps {
+                git 'https://github.com/BilalPeerjade/APIPostmanCollection'
+            }
+        }
         stage('pull Docker Image') {
             steps {
-                echo 'docker pull peerjadebilal/gorestapitest:1.1'
+                sh 'docker pull peerjadebilal/gorestapitest:1.1'
             }
         }
 	stage('Run API Test Cases') {
             steps {
-                echo 'docker run -v %cd%/newman:/app/newman peerjadebilal/gorestapitest:1.1'
+                sh 'docker run -v %cd%/newman:/app/newman peerjadebilal/gorestapitest:1.1'
             }
         }
 	stage('Publish HTML Extra Report') {
