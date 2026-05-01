@@ -14,6 +14,9 @@ RUN npm install -g newman-reporter-html
 #Install Newman Reporter HTMLExtra
 RUN npm install -g newman-reporter-htmlextra
 
+#Ensure the result directory exists
+RUN mkdir -p /app/results
+
 
 # Copy your Postman collection and environment files to the working directory
 COPY GoRestAPIWorkFlow.postman_collection_new.json .
