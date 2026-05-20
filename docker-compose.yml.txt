@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  gorest:
+    image: peerjadebilal/gorestapitest:1.0
+    volumes:
+      - ./results:/app/results
+
+  booking:
+    image: peerjadebilal/gorestapitest:1.2
+    volumes:
+      - ./results:/app/results
